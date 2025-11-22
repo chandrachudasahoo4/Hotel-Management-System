@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="left-side">
+        <div class="logo">Hotel management System</div>
+        <a routerLink="/home" routerLinkActive="active">
+            <button class="back-button">Home →</button>
+        </a>
+
+        <div class="tagline">
+            Secure Payments <br>
+            Real-time Analytics <br>
+            Guest Management
+        </div>
+    </div>
+
+    <div class="right-side">
+        <div class="form-container">
+            <h1>Create an account</h1>
+            <span class="login-link">
+                Already have an account?
+                <a routerLink="/login" routerLinkActive="active">Log In</a>
+            </span>
+
+            <form (ngSubmit)="register()" #registerForm="ngForm">
+                <div class="name-row">
+                    <div class="form-group">
+                        <input type="text" placeholder="First Name" [(ngModel)]="registerInput.firstName"
+                            name="firstName" required #firstNameCtrl="ngModel" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Last Name" [(ngModel)]="registerInput.lastName" name="lastName"
+                            required #lastNameCtrl="ngModel" />
+                    </div>
+                </div>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <input type="email" placeholder="Email" [(ngModel)]="registerInput.email" name="email" required
+                        email #emailCtrl="ngModel" />
+                    <div *ngIf="emailCtrl.dirty && emailCtrl.value && emailCtrl.invalid"
+                        class="loginMsg">
+                        Invalid email address.
+                    </div>
+                    <div *ngIf="emailCtrl.value && emailCtrl.value.includes(' ')" class="loginMsg">
+                        Email should not contain spaces.
+                    </div>
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="form-group">
+                    <div class="password-wrapper">
+                        <input [type]="showPassword ? 'text' : 'password'" id="password" placeholder="Enter your password"
+                            [(ngModel)]="registerInput.password" name="password" required
+                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" #passwordCtrl="ngModel" />
+                        <button type="button" class="toggle-password" (click)="togglePassword()">
+                            <img [src]="showPassword ? 'ico/hidden.png' : 'ico/eye.png'" 
+                                 [alt]="showPassword ? 'Hide Password' : 'Show Password'" 
+                                 class="password-icon">
+                        </button>
+                    </div>
+
+                    <!-- Live warning: weak password -->
+                    <div *ngIf="passwordCtrl.touched && passwordCtrl.value && passwordCtrl.invalid"
+                        style="color:red; font-size:14px;">
+                        Password must have 1 uppercase letter, 1 lowercase letter, 1 number, and 8+ characters.
+                    </div>
+
+                    <!-- Live warning: spaces in password -->
+                    <div *ngIf="passwordCtrl.value && passwordCtrl.value.includes(' ')"
+                        style="color:red; font-size:14px;">
+                        Password should not contain spaces.
+                    </div>
+                </div>
+
+                <p style="color: rgb(255, 0, 93);">{{ registerMsg }}</p>
+
+                <!-- Disabled warning -->
+                <div *ngIf="registerForm.invalid && registerForm.touched"
+                    style="color:rgb(255, 0, 93); font-size:14px; margin-top:10px;">
+                    Please fix errors before submitting.
+                </div>
+
+                <!-- <button type="submit" class="submit-btn" [disabled]="registerForm.invalid">
+                    Create account
+                </button> -->
+                <button type="submit" class="submit-btn">
+                    Create account
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

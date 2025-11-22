@@ -1,0 +1,53 @@
+<nav>
+  <div class="nav-container">
+    <div class="brand">
+      <a routerLink="/home" routerLinkActive="active">
+        <img src="icons/iconLabel.png" alt="Velvet Horizon" height="40px">
+      </a>
+
+    </div>
+    <div class="nav-links">
+      <a routerLink="/home" routerLinkActive="active">Home</a>
+      <a routerLink="/book" routerLinkActive="active">Book a room</a>
+      <a routerLink="/about" routerLinkActive="active">About</a>
+
+      <!-- Show role-specific links when logged in -->
+
+      <!-- IF USER IS ADMIN - Show Admin Links -->
+      <div *ngIf="isLoggedIn && userRole === 'ADMIN'" class="role-links">
+        <a routerLink="/adminDashboard" routerLinkActive="active">Admin</a>
+      </div>
+
+      <!-- IF USER IS RECEPTION - Show Reception Links -->
+      <div *ngIf="isLoggedIn && userRole === 'RECEPTION'" class="role-links">
+        <a routerLink="/listAllBookings" routerLinkActive="active">Bookings</a>
+      </div>
+
+      <!-- IF USER IS CUSTOMER - Show Profile Links -->
+      <div *ngIf="isLoggedIn && userRole === 'CUSTOMER'" class="role-links">
+        <a routerLink="/customerDashboard" routerLinkActive="active">Profile</a>
+      </div>
+
+      <!-- Show different content based on login status -->
+
+      <!-- IF USER IS NOT LOGGED IN - Show Login Button -->
+      <div *ngIf="!isLoggedIn">
+        <a routerLink="/login" routerLinkActive="active">
+          <button id="login-btn">Log In</button>
+        </a>
+      </div>
+
+      <!-- IF USER IS LOGGED IN - Show User Info and Logout -->
+      <div *ngIf="isLoggedIn" class="user-info">
+        <!-- Welcome message with user name -->
+
+
+        <!-- Logout button -->
+        <button class="logout-btn" (click)="logout()">
+          Logout
+        </button>
+      </div>
+
+    </div>
+  </div>
+</nav>

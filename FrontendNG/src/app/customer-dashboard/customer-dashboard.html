@@ -1,0 +1,95 @@
+<div class="customer-dashboard">
+  <!-- STEP 1: Header with Profile Button -->
+  <header class="dashboard-header">
+    <h1>My Bookings</h1>
+    <div>
+    </div>
+  </header>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading">
+    <p>Loading your bookings...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="loadUserBookings()" *ngIf="userId">Retry</button>
+  </div>
+
+  <!-- Bookings List -->
+  <div *ngIf="!loading && !error" class="bookings-container">
+    
+    <!-- No Bookings -->
+    <div *ngIf="bookings.length === 0" class="no-bookings">
+      <p>You have no bookings yet.</p>
+    </div>
+
+    <!-- Bookings List -->
+    <div *ngIf="bookings.length > 0" class="bookings-list">
+      <div *ngFor="let booking of bookings" 
+           class="booking-card" 
+           [class.pending-booking]="booking.status === 'PENDING'">
+        
+        <!-- Booking Header -->
+        <div class="booking-header">
+          <h3>Room ID: {{ booking.roomId }}</h3>
+          <span class="status" [class]="'status-' + booking.status.toLowerCase()">
+            {{ booking.status }}
+          </span>
+        </div>
+
+        <!-- Booking Details -->
+        <div class="booking-details">
+          <div class="booking-info">
+            <p><strong>Check-in:</strong> {{ booking.checkinDate }}</p>
+            <p><strong>Check-out:</strong> {{ booking.checkoutDate }}</p>
+            <p><strong>Guests:</strong> {{ booking.totalNumOfGuest }}</p>
+            <p><strong>Children:</strong> {{ booking.numOfChildren }}</p>
+            <p><strong>Total Fee:</strong> ₹{{ booking.totalFee }}</p>
+          </div>
+        </div>
+
+        <!-- OTP and Actions (for PENDING bookings) -->
+        <div *ngIf="booking.status === 'PENDING'" class="booking-actions">
+          <div class="otp-section">
+            <strong>OTP:</strong> {{ booking.bookingConfirmationCode }}
+          </div>
+          <button class="cancel-btn" (click)="cancelBooking(booking.id)">
+            Cancel Booking
+          </button>
+        </div>
+
+        <!-- Confirmation Code (for all bookings) -->
+        <div class="confirmation-code">
+          <small><strong>Confirmation Code:</strong> {{ booking.bookingConfirmationCode }}</small>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<!-- WORKING andFeatures
+on "user dashboard" remove everything and add: show all user booking.
+ user bookings: 
+- show room details
+- show: OTP 
+- cancel
+- add status col (completed, cancelled, pending)
+
+Single Room
+**Price:** ₹99.99/night
+**AC:** Yes
+Total: 
+check in | check out
+[Status]
+(if status == pending -> show OTP)
+(if status == pending -> show cancelbtn)
+
+
+A Profile btn (just demo)
+
+-->

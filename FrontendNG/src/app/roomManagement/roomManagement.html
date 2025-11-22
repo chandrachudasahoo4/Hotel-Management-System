@@ -1,0 +1,94 @@
+<div class="room-management-container">
+  <!-- Header -->
+  <div class="room-header">
+    <div class="header-content">
+      <h1 class="room-title">Room Management</h1>
+    </div>
+    <div class="header-actions">
+      <button class="add-room-btn" (click)="addRoom()">
+        <span class="add-icon">+</span>
+        Add Room
+      </button>
+      <button class="refresh-btn" (click)="refreshRooms()">
+        <img src="ico/refresh-page-option.png" alt="Refresh" class="refresh-icon">
+        Refresh
+      </button>
+      <button class="back-btn" (click)="goBack()">
+        <img src="ico/home.png" alt="Back" class="back-icon">
+        Back to Dashboard
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Loading rooms...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !loading" class="error-container">
+    <div class="error-icon">⚠️</div>
+    <h3>Error Loading Rooms</h3>
+    <p>{{ error }}</p>
+    <button class="retry-btn" (click)="refreshRooms()">Try Again</button>
+  </div>
+
+  <!-- Rooms Content -->
+  <div *ngIf="!loading && !error" class="rooms-content">
+    <div class="rooms-summary">
+      <h3>Total Available Rooms: {{ rooms.length }}</h3>
+    </div>
+
+    <!-- Rooms Grid -->
+    <div *ngIf="rooms.length > 0" class="rooms-grid">
+      <div *ngFor="let room of rooms" class="room-card">
+        <div class="room-card-header">
+          <h4 class="room-type">{{ room.roomType }}</h4>
+          <span class="room-id">ID: {{ room.id }}</span>
+        </div>
+        
+        <div class="room-card-content">
+          <p class="room-description">{{ room.roomDesc }}</p>
+          
+          <div class="room-features">
+            <div class="feature-item">
+              <span class="feature-label">AC:</span>
+              <span class="feature-value" [class.has-ac]="room.airConditioned" [class.no-ac]="!room.airConditioned">
+                {{ room.airConditioned ? 'Yes' : 'No' }}
+              </span>
+            </div>
+            
+            <div class="feature-item">
+              <span class="feature-label">Price per Night:</span>
+              <span class="room-price">{{ formatPrice(room.roomPrice) }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="room-card-footer">
+          <div class="room-status">
+            <span class="status-badge available">Available</span>
+          </div>
+          <div class="room-actions">
+            <button class="edit-btn" (click)="editRoom(room)" title="Edit Room">
+              <img src="ico/edit.png" alt="Edit" class="edit-icon">
+              Edit
+            </button>
+            <button class="delete-btn" (click)="deleteRoom(room)" title="Delete Room">
+              <img src="ico/trash.png" alt="Delete" class="delete-icon">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No rooms state -->
+    <div *ngIf="rooms.length === 0" class="no-rooms">
+      <img src="ico/house.png" alt="No Rooms" class="no-rooms-icon">
+      <h3>No Rooms Available</h3>
+      <p>There are currently no available rooms in the system.</p>
+    </div>
+  </div>
+</div>

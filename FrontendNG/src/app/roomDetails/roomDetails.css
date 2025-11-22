@@ -1,0 +1,243 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:host {
+  display: block;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.roomDetails-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Loading and Error States */
+.loading, .error {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.loading p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.error {
+  border-left: 4px solid #dc3545;
+}
+
+.error p {
+  color: #dc3545;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.retry-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.retry-btn:hover {
+  background-color: #c82333;
+}
+
+/* Room Details */
+.room-details {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Room Header */
+.room-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.room-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.room-price {
+  font-size: 1.5rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* Room Images */
+.room-images {
+  padding: 2rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.room-images h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.image-container img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover img {
+  transform: scale(1.05);
+}
+
+/* Room Info */
+.room-info {
+  padding: 2rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.room-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.info-item strong {
+  color: #495057;
+  font-weight: 600;
+}
+
+.info-item span {
+  color: #6c757d;
+  font-weight: 500;
+}
+
+/* Room Description */
+.room-description {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.room-description h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #495057;
+}
+
+.room-description p {
+  color: #6c757d;
+  line-height: 1.6;
+}
+
+/* Booking Section */
+.booking-section {
+  padding: 2rem;
+  text-align: center;
+}
+
+.book-btn {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.book-btn:hover {
+  background: linear-gradient(135deg, #218838 0%, #1ca085 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .roomDetails-container {
+    padding: 1rem;
+  }
+  
+  .room-header {
+    padding: 1.5rem 1rem;
+  }
+  
+  .room-header h1 {
+    font-size: 2rem;
+  }
+  
+  .room-price {
+    font-size: 1.3rem;
+  }
+  
+  .room-images, .room-info, .booking-section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .images-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .book-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}

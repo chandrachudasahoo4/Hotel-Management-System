@@ -1,0 +1,154 @@
+nav {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 1.2rem 5%;
+  position: sticky;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #e5e5e5;
+  box-sizing: border-box;
+}
+
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.brand {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
+  /* border: 1px solid red; */
+  padding: none;
+  height: 40px;
+  cursor: pointer;
+}
+
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav-links a {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #1a1a1a;
+}
+
+#login-btn {
+  background: #1a1a1a;
+  color: white;
+  padding: 0.6rem 1.8rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+  text-decoration: none;
+}
+
+#login-btn:hover {
+  opacity: 0.8;
+}
+
+.active {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+.nav-links a.active::after {
+  content: "";
+  display: block;
+  width: 90%;
+  height: 3px;
+  background-color: black;
+  border-radius: 999px;
+  margin: 0 auto;
+
+}
+
+/* NEW STYLES FOR USER INFO AND LOGOUT */
+
+.role-links {
+  display: flex;
+  align-items: center;
+}
+
+.role-links a {
+  color: #1a1a1a;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: 2px solid #1a1a1a;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.role-links a:hover {
+  background: #424242;
+  color: white;
+}
+.role-links .active {
+    background: #000000;
+  color: white;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.welcome-text {
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.user-role {
+  color: #666;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.dashboard-btn {
+  background: #4CAF50;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dashboard-btn:hover {
+  background: #45a049;
+}
+
+.logout-btn {
+  background: #f44336;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #da190b;
+}

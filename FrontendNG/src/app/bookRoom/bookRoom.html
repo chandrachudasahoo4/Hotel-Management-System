@@ -1,0 +1,146 @@
+<!-- Toast Notification -->
+@if (showToast) {
+  <div class="toast-container">
+    <div [class]="'toast toast-' + toastType">
+      <span class="toast-message">{{ toastMessage }}</span>
+      <button class="toast-close" (click)="hideToast()">×</button>
+    </div>
+  </div>
+}
+
+@if (loading) {
+  <div class="loading-container">
+    <p>Loading room details...</p>
+  </div>
+}
+
+@if (error) {
+  <div class="error-container">
+    <p class="error-message">{{ error }}</p>
+    <button (click)="goBack()" class="back-btn">Go Back</button>
+  </div>
+}
+
+@if (!loading && !error && room) {
+  <div class="booking-container">
+      <div class="room-header">
+        <button (click)="goBack()" class="back-btn">← Back to Room Details</button>
+        <h2>Book {{ room.roomDesc }}</h2>
+      </div>    <div class="booking-content">
+      <!-- Room Summary Card -->
+      <div class="room-summary">
+        <h3>Room Summary</h3>
+        <div class="room-info">
+          <p><strong>Room Type:</strong> {{ room.roomType }}</p>
+          <p><strong>Description:</strong> {{ room.roomDesc }}</p>
+          <p><strong>AC:</strong> @if (room.airConditioned) { Yes } @else { No }</p>
+          <p><strong>Price per Night:</strong> {{ formatRoomPrice(room.roomPrice) }}</p>
+        </div>
+      </div>
+
+      <!-- Booking Form -->
+      <div class="booking-form">
+        <h3>Booking Details</h3>
+        
+        <div class="form-group">
+          <label for="checkinDate">Check-in Date:</label>
+          <input 
+            type="date" 
+            id="checkinDate" 
+            [(ngModel)]="checkinDate"
+            (change)="onDateChange()"
+            [min]="checkinDate"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="checkoutDate">Check-out Date: <span style="color: red;">*</span></label>
+          <input 
+            type="date" 
+            id="checkoutDate" 
+            [(ngModel)]="checkoutDate"
+            (change)="onDateChange()"
+            [min]="checkinDate"
+            placeholder="Select check-out date"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="totalGuests">Total Guests:</label>
+          <input 
+            type="number" 
+            id="totalGuests" 
+            [(ngModel)]="totalNumOfGuest"
+            min="1" 
+            max="4"
+            (change)="onDateChange()"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="children">Number of Children (max 3):</label>
+          <input 
+            type="number" 
+            id="children" 
+            [(ngModel)]="numOfChildren"
+            min="0" 
+            max="3"
+            required>
+        </div>
+      </div>
+
+      <!-- Bill Summary -->
+      @if (numberOfDays > 0 && checkinDate && checkoutDate) {
+        <div class="bill-summary">
+          <h3>Invoice</h3>
+          <div class="bill-details">
+            <div class="bill-row">
+              <span>Price per Night:</span>
+              <span>{{ formatRoomPrice(room.roomPrice) }}</span>
+            </div>
+            <div class="bill-row">
+              <span>Number of Days:</span>
+              <span>{{ numberOfDays }}</span>
+            </div>
+            <div class="bill-row total">
+              <span><strong>Total Amount:</strong></span>
+              <span><strong>{{ formatCurrency(totalFee) }}</strong></span>
+            </div>
+          </div>
+
+          <div class="payment-section">
+            @if (bookingSuccess) {
+              <div class="success-message">
+                <h3>🎉 Booking Confirmed!</h3>
+                <p>Your booking has been successfully confirmed. Redirecting to your dashboard...</p>
+              </div>
+            }
+            <button 
+              (click)="processPayment()" 
+              [disabled]="isBooking || totalFee <= 0 || isInvalidDateRange()"
+              [class.hide]="bookingSuccess"
+              class="payment-btn">
+              @if (isBooking) {
+                Processing...
+              } @else {
+                Pay {{ formatCurrency(totalFee) }} & Confirm Booking
+              }
+            </button>
+          </div>
+        </div>
+      }
+
+      @if (!checkoutDate && checkinDate) {
+        <div class="info-message">
+          <p>📅 Please select a check-out date to see the total amount and proceed with booking.</p>
+        </div>
+      }
+
+      @if (isInvalidDateRange()) {
+        <div class="error-message">
+          Check-out date must be after or equal to check-in date.
+        </div>
+      }
+    </div>
+  </div>
+}

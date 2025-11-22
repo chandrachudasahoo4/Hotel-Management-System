@@ -1,0 +1,61 @@
+<section class="hero" id="home">
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <h1>Velvet Horizon</h1>
+      <p>
+        Streamline your hotel operations with our clean, intuitive management system designed for efficiency
+      </p>
+      <div class="cta-buttons" *ngIf="!isUserLoggedIn()">
+        <a routerLink="/register" routerLinkActive="active" class="btn btn-primary">Get Started</a>
+        <a routerLink="/login" routerLinkActive="active" class="btn btn-secondary">Sign In</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About / Features Section -->
+<section class="about" id="about">
+  <h2>Features We Provide</h2>
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <h3>Easy Booking</h3>
+      <p>
+        Manage reservations effortlessly with our intuitive booking system designed for speed and simplicity.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">💳</div>
+      <h3>Secure Payments</h3>
+      <p>
+        Process payments safely with integrated payment gateways and encrypted transactions.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Real-time Analytics</h3>
+      <p>
+        Track performance with comprehensive reporting tools and data visualization.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">👥</div>
+      <h3>Guest Management</h3>
+      <p>
+        Keep track of guest preferences, history, and deliver personalized experiences.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="cta-section">
+  <h2>Ready to get started?</h2>
+  <p>Join hundreds of hotels already using HotelHub</p>
+  <div class="cta-buttons">
+    <button class="btn btn-primary" (click)="onRegister()">Register Now</button>
+    <button class="btn btn-secondary" (click)="onLogin()">Login</button>
+  </div>
+</section> -->

@@ -1,0 +1,71 @@
+<div class="roomDetails-container">
+  @if (loading) {
+    <div class="loading">
+      <p>Loading room details...</p>
+    </div>
+  }
+
+  @if (error) {
+    <div class="error">
+      <p>{{ error }}</p>
+      <button (click)="fetchRoomDetails()" class="retry-btn">Try Again</button>
+    </div>
+  }
+
+  @if (!loading && !error && room) {
+    <div class="room-details">
+      <header class="room-header">
+        <h1>{{ room.roomType }} Room</h1>
+        <p class="room-price">₹{{ room.roomPrice }}/night</p>
+      </header>
+
+      <!-- Room Images -->
+      <div class="room-images">
+        <h3>Room Gallery</h3>
+        <div class="images-grid">
+          @for (image of roomImages; track $index) {
+            <div class="image-container">
+              <img 
+                [src]="image" 
+                [alt]="room.roomType + ' Room Image ' + ($index + 1)"
+                (error)="onImageError($event, $index)" />
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Room Details -->
+      <div class="room-info">
+        <h3>Room Information</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <strong>Room Type:</strong>
+            <span>{{ room.roomType }}</span>
+          </div>
+          <div class="info-item">
+            <strong>Price per Night:</strong>
+            <span>₹{{ room.roomPrice }}</span>
+          </div>
+          <div class="info-item">
+            <strong>Air Conditioning:</strong>
+            <span>{{ room.airConditioned ? 'Available' : 'Not Available' }}</span>
+          </div>
+        </div>
+
+        @if (room.roomDesc) {
+          <div class="room-description">
+            <h4>Description</h4>
+            <p>{{ room.roomDesc }}</p>
+          </div>
+        }
+      </div>
+
+      <!-- Book Button -->
+      <div class="booking-section">
+        <button class="book-btn" (click)="bookRoom()">
+          Book This Room
+        </button>
+      </div>
+    </div>
+  }
+</div>

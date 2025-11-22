@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="left-side">
+    <div class="logo">Hotel management System</div>
+    <a routerLink="/home" routerLinkActive="active">
+      <button class="back-button">Home →</button>
+    </a>
+
+    <div class="tagline">
+      Secure Payments <br>
+      Real-time Analytics <br>
+      Guest Management
+    </div>
+  </div>
+
+  <div class="right-side">
+    <div class="form-container">
+      <h1>Login</h1>
+
+      <span class="login-link">
+        Don't have an account?
+        <a routerLink="/register" routerLinkActive="active">Sign Up</a>
+      </span>
+
+      <form (ngSubmit)="login()" #loginForm="ngForm">
+        <!-- EMAIL -->
+        <div class="form-group">
+          <input type="email" placeholder="Enter your email" [(ngModel)]="loginInput.email" name="email" required
+            #emailCtrl="ngModel" />
+          <div *ngIf="emailCtrl.dirty && emailCtrl.value && emailCtrl.invalid" style="color:red; font-size:14px;">
+            Invalid email address.
+          </div>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="form-group">
+          <div class="password-wrapper">
+            <input [type]="showPassword ? 'text' : 'password'" placeholder="Enter your password" [(ngModel)]="loginInput.password" name="password"
+              required #passwordCtrl="ngModel" />
+            <button type="button" class="toggle-password" (click)="togglePassword()">
+              <img [src]="showPassword ? 'ico/hidden.png' : 'ico/eye.png'" 
+                   [alt]="showPassword ? 'Hide Password' : 'Show Password'" 
+                   class="password-icon">
+            </button>
+          </div>
+        </div>
+
+        <!-- Login message -->
+        <p class="loginMsg">{{ loginMsg }}</p>
+
+        <!-- Disabled warning if form invalid -->
+        <div *ngIf="loginForm.invalid && loginForm.touched" class="loginMsg">
+          Please fill in all fields.
+        </div>
+
+        <button type="submit" class="submit-btn">Login</button>
+
+  
+
+        <span class="forgotPassword">
+          <a routerLink="#" routerLinkActive="active">Forgot password?</a>
+        </span>
+      </form>
+    </div>
+  </div>
+</div>

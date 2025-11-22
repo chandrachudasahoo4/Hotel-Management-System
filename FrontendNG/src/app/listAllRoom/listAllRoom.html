@@ -1,0 +1,70 @@
+<div class="listAllRoom-container">
+  <header class="page-header">
+    <h1>Available Rooms</h1>
+    <p>Choose from our selection of comfortable and elegant rooms</p>
+  </header>
+
+  <!-- Loading state -->
+  @if (loading) {
+  <div class="loading">
+    <p>Loading available rooms...</p>
+  </div>
+  }
+
+  <!-- Error state -->
+  @if (error) {
+  <div class="error">
+    <p>{{ error }}</p>
+    <button (click)="fetchAvailableRooms()" class="retry-btn">Try Again</button>
+  </div>
+  }
+
+  <!-- Rooms display -->
+  @if (!loading && !error) {
+  <div class="rooms-grid">
+    @for (room of rooms; track room.id) {
+    <div class="room-card">
+      <div class="room-image">
+        @if (room.roomType.toLowerCase() === 'single') {
+          <img src="rooms/single/1.png" alt="{{ room.roomType }} Room" />
+        } @else if (room.roomType.toLowerCase() === 'double') {
+          <img src="rooms/double/1.png" alt="{{ room.roomType }} Room" />
+        } @else if (room.roomType.toLowerCase() === 'suite') {
+          <img src="rooms/suite/1.png" alt="{{ room.roomType }} Room" />
+        } @else if (room.roomType.toLowerCase() === 'deluxe') {
+          <img src="rooms/deluxe/1.png" alt="{{ room.roomType }} Room" />
+        } @else {
+          <img src="https://via.placeholder.com/300x200/4CAF50/white?text={{ room.roomType }}" alt="{{ room.roomType }} Room" />
+        }
+      </div>
+
+      <div class="room-info">
+        <h3>{{ room.roomType }} Room</h3>
+        <div class="room-details">
+          <p><strong>Price:</strong> ₹{{ room.roomPrice }}/night</p>
+          <p><strong>AC:</strong> {{ room.airConditioned ? 'Yes' : 'No' }}</p>
+        </div>
+
+        @if (room.roomDesc) {
+        <div class="room-description">
+          <strong>Description:</strong>
+          <p>{{ room.roomDesc }}</p>
+        </div>
+        }
+
+        <button (click)="bookRoom(room.id)" class="book-btn">
+          Book Now
+        </button>
+      </div>
+    </div>
+    }
+  </div>
+  }
+
+  <!-- No rooms available -->
+  @if (!loading && !error && rooms.length === 0) {
+  <div class="no-rooms">
+    <p>No rooms are currently available. Please check back later.</p>
+  </div>
+  }
+</div>

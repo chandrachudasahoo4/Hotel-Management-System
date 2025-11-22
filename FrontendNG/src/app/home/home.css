@@ -1,0 +1,213 @@
+.hero {
+  position: relative;
+  /* margin-top: 80px;  */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+  overflow: hidden;
+}
+
+/* Background image */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/assets/hotelBgImg.jpg') center/cover no-repeat;
+  /* background: url('/assets/hotels.jpg') center/cover no-repeat; */
+  /* your image path */
+  /* filter: brightness(0.7); */
+  filter: brightness(50%);
+  /* dim image slightly */
+  z-index: -2;
+}
+
+/* White fade at bottom */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height:40%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 100%);
+  z-index: -1;
+}
+
+/* Content on top of the image */
+.hero-overlay {
+  text-align: center;
+  padding: 0 5%;
+  max-width: 800px;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: -2px;
+  color: #fff;
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  margin-bottom: 3rem;
+  color: #f0f0f0;
+  line-height: 1.6;
+  text-shadow: 10px 0 10px rgba(0, 0, 0, 0.5);
+
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background: rgba(0, 0, 0, 0.488);
+  color: #ffffff;
+  border: 1px solid #000000;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+}
+
+
+/* Features Section */
+.about {
+  padding: 6rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.about h2 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 4rem;
+  color: #1a1a1a;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  border: 1px solid #e5e5e5;
+  transition: opacity 0.3s ease;
+  text-align: center;
+}
+
+.feature-card:hover {
+  opacity: 0.8;
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.feature-card h3 {
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.feature-card p {
+  color: #666;
+  line-height: 1.7;
+}
+
+/* CTA Section */
+.cta-section {
+  background: #1a1a1a;
+  color: white;
+  padding: 6rem 5%;
+  text-align: center;
+  border-radius: 24px;
+  margin: 4rem 5%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-section h2 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  color: #999;
+}
+
+.cta-section .btn-primary {
+  background: white;
+  color: #1a1a1a;
+}
+
+.cta-section .btn-secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .about h2,
+  .cta-section h2 {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,63 @@
+<div class="admin-dashboard">
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <h1 class="dashboard-title">Admin Dashboard</h1>
+      <p class="dashboard-subtitle">Manage your hotel operations</p>
+    </div>
+  </header>
+
+  <!-- Main Actions -->
+  <div class="actions-container">
+    <h2 class="actions-title">Quick Actions</h2>
+    
+    <div class="action-cards">
+
+      <!-- Room Management -->
+      <div class="action-card rooms-card" (click)="goToRoomManagement()">
+        <div class="card-icon">
+          <img src="ico/double-bed.png" alt="Room Management" class="icon">
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Room Management</h3>
+          <p class="card-description">View and manage room availability and settings</p>
+        </div>
+      </div>
+
+      <!-- All Bookings -->
+      <div class="action-card bookings-card" (click)="goToAllBookings()">
+        <div class="card-icon">
+          <img src="ico/clipboard.png" alt="All Bookings" class="icon">
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">See All Bookings</h3>
+          <p class="card-description">View and manage all hotel bookings and reservations</p>
+        </div>
+      </div>
+
+      <!-- Reception Registration -->
+      <div class="action-card reception-reg-card" (click)="goToReceptionReg()">
+        <div class="card-icon">
+          <img src="ico/add-user.png" alt="Register Receptionist" class="icon">
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Register Receptionist</h3>
+          <p class="card-description">Add new reception staff members to the system</p>
+        </div>
+      </div>
+
+      <!-- Booking Conflicts -->
+      <!-- <div class="action-card conflicts-card" (click)="goToConflicts()">
+        <div class="card-icon">
+          <img src="ico/danger.png" alt="Booking Conflicts" class="icon">
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Booking Conflicts</h3>
+          <p class="card-description">Detect and resolve double booking issues</p>
+          <span class="conflict-badge">Check Now</span>
+        </div>
+      </div> -->
+
+    </div>
+  </div>
+</div>
